@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}My Orders | Ambro Bites{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="my-4">My Orders</h2>
+    
+    <div class="list-group">
+        {% for order in orders %}
+        <a href="{% url 'orders:detail' order.pk %}" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Order #{{ order.id }}</h5>
+                <small class="text-muted">{{ order.created_at|date:"M d, Y" }}</small>
+            </div>
+            <p class="mb-1">Status: {{ order.get_status_display }}</p>
+        </a>
+        {% empty %}
+        <div class="alert alert-info">
+            You haven't placed any orders yet.
+        </div>
+        {% endfor %}
+    </div>
+    
+    <a href="{% url 'orders:create' %}" class="btn btn-primary mt-3">
+        Create New Order
+    </a>
+</div>
+{% endblock %}  

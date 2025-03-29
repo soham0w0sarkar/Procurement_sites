@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard | Ambro Bites{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="my-4">Corporate Dashboard</h2>
+    
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-olive text-white">
+                    <h5>Recent Orders</h5>
+                </div>
+                <div class="card-body">
+                    {% if recent_orders %}
+                        <ul class="list-group">
+                            {% for order in recent_orders %}
+                            <li class="list-group-item">
+                                <a href="{% url 'orders:detail' order.pk %}">
+                                    Order #{{ order.id }} - {{ order.get_status_display }}
+                                </a>
+                                <span class="float-end">{{ order.created_at|date:"M d, Y" }}</span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No recent orders found.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header bg-secondary text-white">
+                    <h5>Quick Actions</h5>
+                </div>
+                <div class="card-body">
+                    <a href="{% url 'orders:create' %}" class="btn btn-primary mb-2">
+                        Create New Order
+                    </a>
+                    <a href="{% url 'products:list' %}" class="btn btn-outline-secondary">
+                        Browse Products
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

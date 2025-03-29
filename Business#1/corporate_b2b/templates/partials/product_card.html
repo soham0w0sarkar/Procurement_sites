@@ -1,0 +1,15 @@
+<div class="card h-100">
+    <div class="badge bg-{% if product.stock > 10 %}success{% else %}warning{% endif %} position-absolute" style="top: 10px; right: 10px">
+        {% if product.stock > 10 %}In Stock{% else %}Low Stock{% endif %}
+    </div>
+    <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/default-product.png' %}{% endif %}" 
+         class="card-img-top p-3" alt="{{ product.name }}" style="height: 200px; object-fit: contain;">
+    <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text text-muted">{{ product.category.name }}</p>
+        <h5 class="text-primary">${{ product.price }}</h5>
+    </div>
+    <div class="card-footer bg-transparent">
+        <a href="{% url 'products:detail' product.id %}" class="btn btn-outline-primary w-100">View Details</a>
+    </div>
+</div>

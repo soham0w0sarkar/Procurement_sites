@@ -1,0 +1,26 @@
+/* Order List & Detail Tables */
+.order-table {
+    background-color: var(--white);
+  }
+  
+  .order-table th {
+    background-color: var(--primary);
+    color: var(--white);
+  }
+  
+  .order-item {
+    border-left: 4px solid var(--secondary);
+  }
+  
+  /* Checkout Page */
+  .checkout-summary {
+    background-color: var(--light);
+    border: 1px solid #DDD;
+    border-radius: 0.5rem;
+  }
+  
+  .checkout-summary .total {
+    font-size: 1.25rem;
+    color: var(--secondary);
+    font-weight: 700;
+  }

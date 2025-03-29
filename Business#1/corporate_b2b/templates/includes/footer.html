@@ -1,0 +1,68 @@
+<footer class="mt-auto py-4 bg-dark text-white">
+    <div class="container">
+        <div class="row">
+            <!-- Company Info -->
+            <div class="col-md-4 mb-4 mb-md-0">
+                <h5 class="text-uppercase mb-4" style="color: #FF8C00;">
+                    <img src="{% static 'images/logo-white.png' %}" alt="Ambro Bites" height="30" class="me-2">
+                    Ambro Bites
+                </h5>
+                <p class="small">Streamlining bulk orders for corporate clients since 2023. Your trusted partner for office supplies, snacks, and dairy products.</p>
+                <div class="mt-3">
+                    <a href="#" class="text-white me-2"><i class="fab fa-linkedin fa-lg"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-twitter fa-lg"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fas fa-envelope fa-lg"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-md-2 mb-4 mb-md-0">
+                <h6 class="text-uppercase mb-4" style="color: #FF8C00;">Quick Links</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="{% url 'products:list' %}" class="text-white text-decoration-none">Products</a></li>
+                    <li class="mb-2"><a href="{% url 'orders:list' %}" class="text-white text-decoration-none">My Orders</a></li>
+                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Pricing Tiers</a></li>
+                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">FAQ</a></li>
+                </ul>
+            </div>
+
+            <!-- Business Hours -->
+            <div class="col-md-3 mb-4 mb-md-0">
+                <h6 class="text-uppercase mb-4" style="color: #FF8C00;">Support Hours</h6>
+                <ul class="list-unstyled small">
+                    <li class="mb-2"><strong>Mon-Fri:</strong> 8:00 AM - 6:00 PM</li>
+                    <li class="mb-2"><strong>Sat:</strong> 9:00 AM - 2:00 PM</li>
+                    <li class="mb-2"><strong>Sun:</strong> Closed</li>
+                </ul>
+                <div class="mt-3">
+                    <p class="mb-1 small"><i class="fas fa-phone-alt me-2"></i> +1 (800) 123-4567</p>
+                    <p class="small"><i class="fas fa-envelope me-2"></i> corporate@ambrobites.com</p>
+                </div>
+            </div>
+
+            <!-- Corporate Links -->
+            <div class="col-md-3">
+                <h6 class="text-uppercase mb-4" style="color: #FF8C00;">For Businesses</h6>
+                <ul class="list-unstyled small">
+                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Account Management</a></li>
+                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Bulk Order API</a></li>
+                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Vendor Portal</a></li>
+                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
+
+        <!-- Copyright -->
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-start small">
+                &copy; {% now "Y" %} Ambro Bites. All rights reserved.
+            </div>
+            <div class="col-md-6 text-center text-md-end small">
+                <a href="#" class="text-white text-decoration-none me-3">Privacy Policy</a>
+                <a href="#" class="text-white text-decoration-none">GDPR Compliance</a>
+            </div>
+        </div>
+    </div>
+</footer>

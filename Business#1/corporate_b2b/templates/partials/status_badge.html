@@ -1,0 +1,10 @@
+<span class="badge 
+    {% if order.status == 'draft' %}bg-secondary
+    {% elif order.status == 'submitted' %}bg-primary
+    {% elif order.status == 'processing' %}bg-info
+    {% elif order.status == 'shipped' %}bg-warning
+    {% elif order.status == 'delivered' %}bg-success
+    {% elif order.status == 'cancelled' %}bg-danger
+    {% endif %}">
+    {{ order.get_status_display }}
+</span>

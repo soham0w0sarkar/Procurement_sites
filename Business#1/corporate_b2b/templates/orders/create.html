@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">Create New Order</h2>
+    
+    <form method="post" id="order-form">
+        {% csrf_token %}
+        
+        <!-- Products Selection -->
+        <div class="card mb-4">
+            <div class="card-header bg-olive text-white">
+                <h5>Select Products</h5>
+            </div>
+            <div class="card-body">
+                {{ formset.management_form }}
+                <div id="order-items">
+                    {% for form in formset %}
+                    <div class="order-item-form row mb-3">
+                        {{ form.id }}
+                        <div class="col-md-6">
+                            {{ form.product }}
+                            {% if form.instance.product %}
+                                <h6>{{ form.instance.product.name }}</h6>
+                                <p class="text-muted">{{ form.instance.product.get_category_display }}</p>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form.quantity|as_crispy_field }}
+                        </div>
+                        <div class="col-md-2">
+                            <span class="price-display mt-3 d-block">$0.00</span>
+                        </div>
+                        <div class="col-md-1">
+                            {% if form.instance.product %}
+                                <button type="button" class="btn btn-danger btn-sm mt-3 remove-item">×</button>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <button type="button" id="add-item" class="btn btn-secondary btn-sm">
+                    <i class="fas fa-plus"></i> Add Product
+                </button>
+            </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit Order</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/orders.js' %}"></script>
+{% endblock %}
