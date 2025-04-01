@@ -1,87 +1,149 @@
 <!-- Example navigation.html -->
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #6B8E23;">
-    <div class="container">
-        <a class="navbar-brand" href="/">
-            <img src="{% static 'images/logo.png' %}" alt="Ambro Bites" height="40">
+
+{% load static %}
+<nav
+  class="navbar navbar-expand-lg navbar-dark"
+  style="background-color: #6b8e23"
+>
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img src="{% static 'images/logo.png' %}" alt="Ambro Bites" height="40" />
+    </a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'accounts:home' %}">
+          <i class="fas fa-boxes me-2"></i>CorporateB2B
         </a>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand" href="{% url 'home' %}">
-                    <i class="fas fa-boxes me-2"></i>CorporateB2B
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                
-                <div class="collapse navbar-collapse" id="mainNav">
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown">
-                                <i class="fas fa-store me-1"></i> Products
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{% url 'products:list' %}">All Products</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="{% url 'products:category' 'snacks' %}">Snacks</a></li>
-                                <li><a class="dropdown-item" href="{% url 'products:category' 'dairy' %}">Dairy</a></li>
-                                <li><a class="dropdown-item" href="{% url 'products:category' 'essentials' %}">Essentials</a></li>
-                            </ul>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'orders:list' %}">
-                                <i class="fas fa-clipboard-list me-1"></i> My Orders
-                            </a>
-                        </li>
-                        
-                        {% if user.is_authenticated and user.is_approver %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'orders:approvals' %}">
-                                <i class="fas fa-check-circle me-1"></i> Approvals
-                            </a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                    
-                    <ul class="navbar-nav">
-                        {% if user.is_authenticated %}
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
-                                <i class="fas fa-user-circle me-1"></i> {{ user.get_short_name|default:user.username }}
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="{% url 'accounts:profile' %}"><i class="fas fa-user me-2"></i> Profile</a></li>
-                                <li><a class="dropdown-item" href="{% url 'accounts:company' %}"><i class="fas fa-building me-2"></i> Company</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
-                            </ul>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link position-relative" href="{% url 'orders:cart' %}">
-                                <i class="fas fa-shopping-cart"></i>
-                                {% if cart_count %}
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                    {{ cart_count }}
-                                </span>
-                                {% endif %}
-                            </a>
-                        </li>
-                        {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login' %}">
-                                <i class="fas fa-sign-in-alt me-1"></i> Login
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'accounts:signup' %}">
-                                <i class="fas fa-user-plus me-1"></i> Register
-                            </a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="productsDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+              >
+                <i class="fas fa-store me-1"></i> Products
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="{% url 'products:list' %}"
+                    >All Products</a
+                  >
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{% url 'products:category' 'snacks' %}"
+                    >Snacks</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{% url 'products:category' 'dairy' %}"
+                    >Dairy</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{% url 'products:category' 'essentials' %}"
+                    >Essentials</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'orders:list' %}">
+                <i class="fas fa-clipboard-list me-1"></i> My Orders
+              </a>
+            </li>
+
+            {% if user.is_authenticated and user.is_approver %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'orders:approvals' %}">
+                <i class="fas fa-check-circle me-1"></i> Approvals
+              </a>
+            </li>
+            {% endif %}
+          </ul>
+
+          <ul class="navbar-nav">
+            {% if user.is_authenticated %}
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="userDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+              >
+                <i class="fas fa-user-circle me-1"></i> {{
+                user.get_short_name|default:user.username }}
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <a class="dropdown-item" href="{% url 'accounts:profile' %}"
+                    ><i class="fas fa-user me-2"></i> Profile</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{% url 'accounts:company' %}"
+                    ><i class="fas fa-building me-2"></i> Company</a
+                  >
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="{% url 'logout' %}"
+                    ><i class="fas fa-sign-out-alt me-2"></i> Logout</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a
+                class="nav-link position-relative"
+                href="{% url 'orders:cart' %}"
+              >
+                <i class="fas fa-shopping-cart"></i>
+                {% if cart_count %}
+                <span
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                >
+                  {{ cart_count }}
+                </span>
+                {% endif %}
+              </a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'accounts:login' %}">
+                <i class="fas fa-sign-in-alt me-1"></i> Login
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'accounts:signup' %}">
+                <i class="fas fa-user-plus me-1"></i> Register
+              </a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
 </nav>
